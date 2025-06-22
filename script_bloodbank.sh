@@ -52,8 +52,10 @@ if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
     mysql -u root bloodbank < /var/www/html/bloodbank/sql/bloodbank.sql
 
     read -p "Please write username for database: " username
-    read -p "Please write password for database: " password
-
+    echo
+    read -s -p "Please write password for database: " password
+    echo
+    
     mysql -u root -e "DROP USER IF EXISTS '$username'@'localhost';"
     mysql -u root -e "CREATE USER '$username'@'localhost' IDENTIFIED BY '$password';"
     mysql -u root -e "GRANT ALL PRIVILEGES ON bloodbank.* TO '$username'@'localhost';"
